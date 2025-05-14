@@ -23,5 +23,5 @@ console.log(10-{"a":10,valueOf(){return {};},toString(){return "5";}});// if val
 console.log(10-{"a":10, valueOf(){ return "2";}});
 
 console.log(12+{"x":23});//first valueOf the toString
-console.log({}+10);//when you use parantheses as the first character of the line(in replit or browser console), JS treats if as a code block, otherwise normal
+console.log({}+10);//when you use parantheses as the first character of the line(in repl or browser console), JS treats if as a code block, otherwise normal
 console.log(10+{});
