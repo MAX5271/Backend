@@ -8,8 +8,29 @@ let blogList = [];
 //setting up a middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(logger);//custom middleware to use every time instead of writing logger seperately for each function
 
-app.get("/blogs", (req, res) => {
+//middleware
+function logger(req, res, next){
+  console.log("Hitting logger.");
+  console.log(req.url);
+  console.log(req.body);
+  //to put an error condition to check if there is an error anywhere, this will halt the process before the code reaches next() and return error.
+  if(true){
+    return res.status(500).json({
+      error: "Something went wrong."
+    });
+  }
+  next();//next is important to move to next step.
+}
+
+function isAuthenticated(req, res, next){
+  console.log("The user is authenticated.");
+  next();
+}
+
+//(routes,middleware,controller)
+app.get("/blogs",logger,isAuthenticated, (req, res) => {
   //status code is 200, ok.
   res.status(200).json({
     data: blogList,
