@@ -1,0 +1,57 @@
+
+ mysql -u root -p
+create database Blogging;
+use Blogging;
+show tables;
+create table Blogs(id INT not null auto_increment, title VARCHAR(30) not null, content VARCHAR(1200));// won't work cause we need key not id for auto.
+create table Blogs(id INT not null auto_increment, title VARCHAR(30) not null, content VARCHAR(1200), primary key(id));// we need to tell the primrary key for this to work.
+create table if not exists Blogs(id INT not null auto_increment, title VARCHAR(30) not null, content VARCHAR(1200), primary key(id));
+drop table blogs;
+DESCRIBE blogs;
+DESC blogs;
+insert into blogs (title, content) values ("My second blog.", "My name is Nitigya Chandel"), ("This is my third blog", "Hello world");
+select id,title,content from blogs; // use this to retrieve data.
+select * from blogs
+select * from blogs where id > 1;
+The not equal to operators are <> and !=
+the equal to operator is =
+
+The Like query: Select col1,col2,... from blogs where column1 like %string%
+                select * from blogs where title like "My%"; //here % after the string My denotes prefix matching, %string is suffix matching, %string% is matching in middle
+                like query also works in databases not just in tables
+
+ select * from blogs order by id desc, title desc; // sort in descending order but if two have same then sort them by title
+
+ select * from blogs order by id desc, title desc, limit 2;// only show 2 results
+
+  select * from blogs order by id desc, title desc, limit 2, offset 1; skip the first element, this is used in pagination
+
+update blogs set title = "This is my fourth blog." where id=3;// update the rows of the table
+alter table blogs add Date date;// added a column;
+
+foreign key is a key that is primary key in some other database
+
+JOINS:
+create table users(id int auto_increment, blogs int,name varchar(20) not null,primary key(id));
+insert into users(name,blogs) values ("Nitigya Chandel",1),("Daddy", 3), ("Max",2);
+ select * from users join blogs where blogs.id=users.blogs;
+
+
+
+
+
+
+
+ for ease use ORMS;
+
+
+
+
+
+
+
+
+Numeric values -> int, decimal, bigint
+string -> char, varchar, enum
+date and time -> date,time,datetime
+json
